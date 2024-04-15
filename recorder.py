@@ -22,8 +22,10 @@ class Recorder:
             print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
         if (hasattr(model, "enc")):
             torch.save(model.enc.state_dict(), path+'/'+'enc_checkpoint.pth')
+        if (hasattr(model, "dec")):
             torch.save(model.dec.state_dict(), path+'/'+'dec_checkpoint.pth')
+        if (hasattr(model, "pred")):
             torch.save(model.pred.state_dict(), path+'/'+'pred_checkpoint.pth')
-        else:
+        if (hasattr(model, "state_dict")):
             torch.save(model.state_dict(), path+'/'+'checkpoint.pth')
         self.val_loss_min = val_loss
